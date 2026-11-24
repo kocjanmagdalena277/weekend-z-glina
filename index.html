@@ -42,7 +42,7 @@
           <p class="eyebrow">Warsztat ceramiki · Kraków · dla początkujących</p>
           <h1 id="hero-title">Ulep swoje pierwsze naczynia w&nbsp;jeden weekend</h1>
           <p class="lead">Dwudniowy warsztat ceramiki tylko dla osób bez doświadczenia. Mała grupa, glina, narzędzia i wypał w cenie – Ty przynosisz tylko ciekawość.</p>
-          <a class="btn btn-primary" href="#zapis" data-cta-location="hero">Zarezerwuj miejsce</a>
+          <a class="btn btn-primary" id="cta-hero" href="#zapis" data-cta-location="hero">Zarezerwuj miejsce</a>
           <p class="hero-note">Sobota i niedziela, 10:00–14:00 · max 8 osób</p>
         </div>
         <div class="hero-art" aria-hidden="true">
@@ -108,8 +108,8 @@
       </div>
     </section>
 
-    <!-- Sekcja mierzona: section_view (section_id = oferta) -->
-    <section class="section" id="oferta" data-track-section="oferta" aria-labelledby="oferta-title">
+    <!-- Sekcja mierzona w GTM: Element Visibility na id="oferta" → section_view (section_id = oferta) -->
+    <section class="section" id="oferta" aria-labelledby="oferta-title">
       <div class="container">
         <h2 id="oferta-title">Terminy i cena</h2>
         <p class="muted">Terminy i cena są fikcyjne – to element demonstracji.</p>
@@ -122,7 +122,7 @@
           <li>W cenie: glina, narzędzia, fartuch, szkliwa i wypał.</li>
           <li>Zmiana terminu bez opłat do 7 dni przed warsztatem.</li>
         </ul>
-        <a class="btn btn-primary" href="#zapis" data-cta-location="oferta">Zarezerwuj miejsce</a>
+        <a class="btn btn-primary" id="cta-oferta" href="#zapis" data-cta-location="oferta">Zarezerwuj miejsce</a>
       </div>
     </section>
 
@@ -147,7 +147,7 @@
             <p>Termin możesz zmienić bez opłat do 7 dni przed warsztatem.</p>
           </details>
         </div>
-        <a class="btn btn-secondary" href="#zapis" data-cta-location="faq">Wybierz termin i zarezerwuj</a>
+        <a class="btn btn-secondary" id="cta-faq" href="#zapis" data-cta-location="faq">Wybierz termin i zarezerwuj</a>
       </div>
     </section>
 
@@ -157,12 +157,6 @@
         <p class="muted">To wersja demonstracyjna – nic nie zostanie wysłane ani zarezerwowane. Do testów używaj fikcyjnych danych, np. <code>test@example.com</code>. Pola oznaczone * są wymagane.</p>
 
         <form id="zapis_warsztat" class="form" method="post" novalidate>
-          <div class="field">
-            <label for="f-name">Imię *</label>
-            <input id="f-name" name="name" type="text" autocomplete="given-name" required minlength="2" maxlength="40" aria-describedby="f-name-error">
-            <p class="error" id="f-name-error" hidden></p>
-          </div>
-
           <div class="field">
             <label for="f-email">E-mail *</label>
             <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-hint f-email-error">
@@ -200,8 +194,8 @@
         </form>
 
         <div class="success" id="form-success" role="status" tabindex="-1" hidden>
-          <h3>Dziękujemy!</h3>
-          <p>To była demonstracja – Twoje zgłoszenie nie zostało nigdzie wysłane, a miejsce nie zostało zarezerwowane.</p>
+          <h3>Demonstracja zakończona — dane nie zostały wysłane</h3>
+          <p>To projekt edukacyjny: zgłoszenie nie trafiło na żaden serwer, a miejsce nie zostało zarezerwowane.</p>
         </div>
       </div>
     </section>
@@ -212,7 +206,7 @@
       <p><strong>Projekt edukacyjny</strong> na zajęcia „Analityka Aplikacji Webowych”. Pracownia, terminy i ceny są fikcyjne.</p>
       <p>Po wyrażeniu zgody strona korzysta z: Google Tag Manager, Google Analytics 4 (analityka), Microsoft Clarity (analityka) oraz Meta Pixel (marketing). Nie przesyłamy do tych narzędzi treści formularza.</p>
       <p>Ilustracja: własna grafika SVG wykonana na potrzeby projektu.</p>
-      <p><button type="button" class="link-button" id="open-consent">Zmień ustawienia zgód</button></p>
+      <p><button type="button" class="link-button" id="open-consent">Ustawienia prywatności</button></p>
     </div>
   </footer>
 

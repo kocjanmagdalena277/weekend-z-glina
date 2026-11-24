@@ -104,43 +104,13 @@
       });
       // Dla klawiatury i czytników ekranu: przenieś fokus na pierwsze pole formularza.
       setTimeout(function () {
-        document.getElementById('f-name').focus({ preventScroll: true });
+        document.getElementById('f-email').focus({ preventScroll: true });
       }, 400);
     });
   });
 
-  /* ---------- section_view ---------- */
-  // Definicja: co najmniej 50% sekcji widoczne przez co najmniej 1 s, raz na odsłonę.
-  // Sekcja wyższa niż ekran: wystarczy, że zajmuje co najmniej 50% wysokości okna.
-
-  var VIEW_MS = 1000;
-
-  document.querySelectorAll('[data-track-section]').forEach(function (section) {
-    var timer = null;
-    var sent = false;
-
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (sent) return;
-        var visible = entry.intersectionRect.height;
-        var needed = Math.min(entry.boundingClientRect.height, window.innerHeight) * 0.5;
-        var isVisible = entry.isIntersecting && visible >= needed;
-
-        if (isVisible && !timer) {
-          timer = setTimeout(function () {
-            sent = true;
-            push({ event: 'section_view', section_id: section.getAttribute('data-track-section') });
-            observer.disconnect();
-          }, VIEW_MS);
-        } else if (!isVisible && timer) {
-          clearTimeout(timer);
-          timer = null;
-        }
-      });
-    }, { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] });
-
-    observer.observe(section);
-  });
+  /* section_view nie jest wysyłane ze strony: mierzy je reguła GTM
+     „Element Visibility” (id oferty, ≥ 50%, ≥ 2000 ms, raz na stronę). */
 
   /* ---------- Formularz: form_start, walidacja, lead_success ---------- */
 
@@ -163,15 +133,6 @@
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   var rules = [
-    {
-      field: 'name', el: 'f-name', error: 'f-name-error',
-      check: function () {
-        var v = form.elements['name'].value.trim();
-        if (!v) return 'Podaj imię.';
-        if (v.length < 2) return 'Imię musi mieć co najmniej 2 znaki.';
-        return '';
-      }
-    },
     {
       field: 'email', el: 'f-email', error: 'f-email-error',
       check: function () {
